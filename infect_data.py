@@ -10,6 +10,12 @@ import time
 from selenium import webdriver
 import pymysql
 
+from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--headless')
+
 while True:
 	db = pymysql.connect(host="",
 					 user="root", 
@@ -17,7 +23,7 @@ while True:
 					 db="dbtest")
 	cursor = db.cursor()
 
-	driver = webdriver.Chrome()
+	driver = webdriver.Chrome(chrome_options=chrome_options)
 	driver.get("https://www.twreporter.org/i/covid-2019-keep-tracking-gcs")
 	time.sleep(5)
 	soup = BeautifulSoup(driver.page_source, 'html.parser')
