@@ -35,6 +35,7 @@ def TranslateData(FillName, year , month):
     UserId = any
     UserIdType = any
     DateRange = any
+    LunchType = any
     DateStart = ''
     DateEnd = ''
 
@@ -46,6 +47,8 @@ def TranslateData(FillName, year , month):
             UserIdType = Datasheet[cell.column_letter]
         if(cell.value == '姓名日期'):
             UserName = Datasheet[cell.column_letter]
+        if(cell.value == '餐別'):
+            LunchType = Datasheet[cell.column_letter]
         if(cell.value!= None):
             if(type(cell.value) == int):
                 if(DateStart == ''):
@@ -63,6 +66,7 @@ def TranslateData(FillName, year , month):
                 rownum = cell.row
                 TypeName = UserIdType[rownum -1].value
                 TempUserName = UserName[rownum -1].value
+                TempLunchType = LunchType[rownum -1].value
                 UType = 0
                 tempList = []
                 if(TypeName.find("低收") != -1) :
@@ -79,6 +83,7 @@ def TranslateData(FillName, year , month):
                             List.append(year + month + datenum)
                             List.append(UType)
                             List.append(TempUserName)
+                            List.append(TempLunchType)
                             tempList.append(List)
                 DataList.append(tempList)
 
@@ -93,6 +98,8 @@ def TranslateData(FillName, year , month):
             Samplesheet.cell(row = count  ,column = 4, value = k[2])
             #服務類別
             Samplesheet.cell(row = count  ,column = 12, value = k[3])
+            #餐別
+            Samplesheet.cell(row = count  ,column = 24, value = k[4])
             count += 1
             
     Samplewb.save("CompleteData.xlsx")
