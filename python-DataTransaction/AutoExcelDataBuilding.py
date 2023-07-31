@@ -35,7 +35,6 @@ def TranslateData(FillName, year , month):
     UserId = any
     UserIdType = any
     DateRange = any
-    LunchType = any
     DateStart = ''
     DateEnd = ''
 
@@ -47,8 +46,6 @@ def TranslateData(FillName, year , month):
             UserIdType = Datasheet[cell.column_letter]
         if(cell.value == '姓名日期'):
             UserName = Datasheet[cell.column_letter]
-        if(cell.value == '餐別'):
-            LunchType = Datasheet[cell.column_letter]
         if(cell.value!= None):
             if(type(cell.value) == int):
                 if(DateStart == ''):
@@ -66,7 +63,6 @@ def TranslateData(FillName, year , month):
                 rownum = cell.row
                 TypeName = UserIdType[rownum -1].value
                 TempUserName = UserName[rownum -1].value
-                TempLunchType = LunchType[rownum -1].value
                 UType = 0
                 tempList = []
                 if(TypeName.find("低收") != -1) :
@@ -83,7 +79,6 @@ def TranslateData(FillName, year , month):
                             List.append(year + month + datenum)
                             List.append(UType)
                             List.append(TempUserName)
-                            List.append(TempLunchType)
                             tempList.append(List)
                 DataList.append(tempList)
 
@@ -96,10 +91,23 @@ def TranslateData(FillName, year , month):
             Samplesheet.cell(row = count  ,column = 2, value = k[1])
             #服務類別
             Samplesheet.cell(row = count  ,column = 4, value = k[2])
-            #服務類別
-            Samplesheet.cell(row = count  ,column = 12, value = k[3])
-            #餐別
-            Samplesheet.cell(row = count  ,column = 24, value = k[4])
+            #备注
+            Samplesheet.cell(row = count  ,column = 12,value = k[3])
+
+            #數量
+            Samplesheet.cell(row = count  ,column = 5,value = "1")
+            #單價
+            Samplesheet.cell(row = count  ,column = 6,value = "80")
+            #服務人員身分證
+            Samplesheet.cell(row = count  ,column = 7,value = "A229516580")
+            #起始時段-小時
+            Samplesheet.cell(row = count  ,column = 8,value = "11")
+            #起始時段-分鐘
+            Samplesheet.cell(row = count  ,column = 9,value = "0")
+            #結束時段-小時
+            Samplesheet.cell(row = count  ,column = 10,value = "11")
+            #結束時段-分鐘
+            Samplesheet.cell(row = count  ,column = 11,value = "30")
             count += 1
             
     Samplewb.save("CompleteData.xlsx")
