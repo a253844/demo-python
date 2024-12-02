@@ -99,13 +99,10 @@ def TranslateData(FillName, year , month):
             #數量
             Samplesheet.cell(row = count  ,column = 5,value = "1")
             #單價
-            if(k[2] == 1){
+            if(k[2] == 1):
                 Samplesheet.cell(row = count  ,column = 6,value = "100")
-            }
-            else
-            {
+            else:
                 Samplesheet.cell(row = count  ,column = 6,value = "90")
-            }
             
             #服務人員身分證
             Samplesheet.cell(row = count  ,column = 7,value = "A229516580")
