@@ -89,6 +89,8 @@ def TranslateData(FillName, year , month):
             Samplesheet.cell(row = count  ,column = 1, value = k[0])
             #服務日期
             Samplesheet.cell(row = count  ,column = 2, value = k[1])
+            #服務項目代碼
+            Samplesheet.cell(row = count  ,column = 3, value = "OT01")
             #服務類別
             Samplesheet.cell(row = count  ,column = 4, value = k[2])
             #备注
@@ -97,7 +99,14 @@ def TranslateData(FillName, year , month):
             #數量
             Samplesheet.cell(row = count  ,column = 5,value = "1")
             #單價
-            Samplesheet.cell(row = count  ,column = 6,value = "80")
+            if(k[2] == 1){
+                Samplesheet.cell(row = count  ,column = 6,value = "100")
+            }
+            else
+            {
+                Samplesheet.cell(row = count  ,column = 6,value = "90")
+            }
+            
             #服務人員身分證
             Samplesheet.cell(row = count  ,column = 7,value = "A229516580")
             #起始時段-小時
@@ -108,10 +117,12 @@ def TranslateData(FillName, year , month):
             Samplesheet.cell(row = count  ,column = 10,value = "11")
             #結束時段-分鐘
             Samplesheet.cell(row = count  ,column = 11,value = "30")
+            #OT01必填-餐別
+            Samplesheet.cell(row = count  ,column = 24,value = "2")
             count += 1
             
-    Samplewb.save("CompleteData.xlsx")
-    return print("寶貝幫你把資料成功轉換好了，檔案已另存囉，記住檔案名稱叫 CompleteData.xlsx")
+    Samplewb.save("CompleteData.xls")
+    return print("寶貝幫你把資料成功轉換好了，檔案已另存囉，記住檔案名稱叫 CompleteData.xls")
     return print("我是不是很棒，給我一百個抱抱!!!!  (~￣▽￣)~ ")
 
 class AutoExcelDataBuilding:
